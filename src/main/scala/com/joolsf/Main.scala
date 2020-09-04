@@ -1,14 +1,14 @@
-package catseffect
+package com.joolsf
 
 import cats.Applicative.ops.toAllApplicativeOps
 import cats.effect.{ExitCode, IO, IOApp}
-import catseffect.concurrency.{
+import com.joolsf.concurrency.{
   RefExample1,
   RefExample1Unsafe,
   RefExample2,
   RefExample2Unsafe
 }
-import catseffect.datatypes.{ResourceExample, SemaphoreExample1}
+import com.joolsf.datatypes.{ResourceExample, SemaphoreExample1}
 
 import scala.util.control.NonFatal
 

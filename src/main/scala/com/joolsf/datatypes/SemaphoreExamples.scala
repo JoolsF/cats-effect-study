@@ -1,4 +1,4 @@
-package catseffect.datatypes
+package com.joolsf.datatypes
 
 object SemaphoreExample1 {
   import cats.effect.{Concurrent, IO, Timer}

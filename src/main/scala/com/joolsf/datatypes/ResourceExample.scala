@@ -1,4 +1,4 @@
-package catseffect.datatypes
+package com.joolsf.datatypes
 
 import cats.Applicative.ops.toAllApplicativeOps
 import cats.effect.{IO, Resource}

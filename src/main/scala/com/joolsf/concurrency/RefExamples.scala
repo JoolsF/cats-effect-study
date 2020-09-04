@@ -1,4 +1,4 @@
-package catseffect.concurrency
+package com.joolsf.concurrency
 
 import cats.effect.concurrent.Ref
 import cats.effect.{IO, Sync}
