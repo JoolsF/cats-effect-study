@@ -27,3 +27,5 @@ target/
 *.log
 .sbtopts
 .DS_Store
+
+.bsp
