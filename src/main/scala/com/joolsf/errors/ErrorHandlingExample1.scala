@@ -1,24 +1,16 @@
 package com.joolsf.errors
 
-import cats.effect.IO
-import com.joolsf.errors.ErrorHandlingExample1.ErrorCaseOne
+import cats.effect.{ContextShift, IO}
+
 
 import scala.concurrent.Future
 import scala.util.control.NonFatal
 
-object ErrorHandlingExample1 {
+class ErrorHandlingExample1()(implicit cs: ContextShift[IO]) {
 
   import Helpers._
 
-  // Errors
-  trait ServiceError extends Throwable {
-    val statusCode: Int
-    val msg: String
-  }
 
-  case class ErrorCaseOne(msg: String) extends ServiceError {
-    val statusCode = 500
-  }
 
   // Examples a
   val succeed: IO[Int] = fromFuture(future(1, false))
@@ -55,6 +47,19 @@ object ErrorHandlingExample1 {
 }
 
 object Helpers {
+
+  // Errors
+  trait ServiceError extends Throwable {
+    val statusCode: Int
+    val msg: String
+  }
+
+  case class ErrorCaseOne(msg: String) extends ServiceError {
+    val statusCode = 500
+  }
+
+
+
   // Helpers
   def putStrLn(str: String): IO[Unit] = IO(println(str))
 
@@ -64,6 +69,6 @@ object Helpers {
     else
       Future.successful(i)
 
-  def fromFuture[A](f: => Future[A]): IO[A] =
+  def fromFuture[A](f: => Future[A])(implicit cs: ContextShift[IO]): IO[A] =
     IO.fromFuture(IO(f))
 }

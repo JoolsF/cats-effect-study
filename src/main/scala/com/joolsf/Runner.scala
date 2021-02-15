@@ -21,9 +21,9 @@ object Runner {
         case "2" =>
           ResourceExample.program(false) *> getInput
         case "3" => RefExample1.program *> getInput
-        case "4" => RefExample1Unsafe.program *> getInput
+//        case "4" => RefExample1Unsafe.program *> getInput
         case "5" => RefExample2.program *> getInput
-        case "6" => RefExample2Unsafe.program *> getInput
+//        case "6" => RefExample2Unsafe.program *> getInput
         case "7" => SemaphoreExample1.program *> getInput
         case "exit" => IO(println("bye bye")) *> IO.unit
         case args =>
