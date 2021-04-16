@@ -164,10 +164,10 @@ object Chapter3 {
     val ko1 = IO
       .sleep(1.second)
       .as(
-        "foo"
+        "ko1"
       ) *> //Run with and without this sleep and observe the effect on e3
       IO.raiseError[String](new RuntimeException("oh!")).debug
-    val ko2 = IO.raiseError[String](new RuntimeException("noes!")).debug
+    val ko2 = IO.raiseError[String](new RuntimeException("ko2!")).debug
 
 //    val e1 = (ok, ko1).parMapN((_, _) => ()) // parTupled below works better here. No need to pass in a function for example
     val e1 = (ok, ko1).parTupled.void
