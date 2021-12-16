@@ -88,9 +88,9 @@ class Chapter4()(implicit cs: ContextShift[IO], t: Timer[IO]) {
 
   }
 
+  //TODO
   // 4.4
   // Racing multiple effects
-
   def raceExample1(): IO[String] = {
 
     def random = scala.util.Random.nextInt(3000)

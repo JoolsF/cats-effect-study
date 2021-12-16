@@ -54,7 +54,7 @@ class Chapter5()(implicit cs: ContextShift[IO], t: Timer[IO]) {
    * Useful for blocking operations e.g. io which defaults to blocked on JVM.
    * Generally if there is no callback API then the operation probably blocks.
    */
-
+  //TODO
   def blockingExample1() = {
     Blocker[IO].use { blocker =>
       withBlocker(blocker).as(1)
@@ -73,7 +73,7 @@ class Chapter5()(implicit cs: ContextShift[IO], t: Timer[IO]) {
       _ <- IO("where am I?").debug
     } yield ()
 
-  // This recursive loop won't still a thread forever since IO.sleep
+  // This recursive loop won't steal a thread forever since IO.sleep
   // introduces an async boundary.  It would be bad for long-running process to take a thread.
   // With this boundary the next iteration can be scheduled as normal.
   // This is equivalent to using IO.shift

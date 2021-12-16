@@ -24,6 +24,7 @@ object Chapter3 {
 
   implicit val ec = ExecutionContext.global
 
+  //TODO
   // Only 1 result will be visible here since Future eagerly schedules the action and caches the result.
   // Unsafe side effect not separately executed from functions like the Future constructor.  It's not an
   // 'Effect' by book's definition therefore.
@@ -50,11 +51,12 @@ object Chapter3 {
     Await.ready(hw2, 5.seconds)
   }
 
+  //TODO
   // This is sequential since IO does not have parallelism built in
   // Will output the same threads
-  def ioParallelExample: IO[Unit] = {
-    val hello = IO(println(s"[${Thread.currentThread.getName}] Hello"))
-    val world = IO(println(s"[${Thread.currentThread.getName}] World"))
+  def ioParallelExample(implicit cs: ContextShift[IO]): IO[Unit] = {
+    val hello: IO[Unit] = IO(println(s"[${Thread.currentThread.getName}] Hello"))
+    val world: IO[Unit] = IO(println(s"[${Thread.currentThread.getName}] World"))
 
     val hw1: IO[Unit] =
       for {
@@ -63,9 +65,9 @@ object Chapter3 {
       } yield ()
 
     val hw2: IO[Unit] =
-      (hello, world).mapN((_, _) => ())
+      (hello, world).parMapN((_, _) => ())
 
-    hw1 *> hw2
+    hw2
   }
 
   //The parallel typeclass

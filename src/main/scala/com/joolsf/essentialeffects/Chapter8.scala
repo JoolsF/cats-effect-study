@@ -9,6 +9,7 @@ import scala.concurrent.{Future, TimeoutException}
 import scala.util.{Failure, Success}
 class Chapter8 {
 
+  //TODO
   /*
    * Testing effects with TestContext allows us to control the effect scheduling clock manually
    */
